@@ -51,8 +51,8 @@ if __name__ == "__main__":
 
                 list_ipp = connexion.get_ipp_value(table_name='DWH_PATIENT_IPPHIST')
                 df_ipp_patient['HOSPITAL_PATIENT_ID']=df_ipp_patient['HOSPITAL_PATIENT_ID'].astype(str)
-                df_filtered = df_ipp_patient[~df_ipp_patient['HOSPITAL_PATIENT_ID'].isin(list_ipp)]
-                connexion.insert_dataframe(table_name='DWH_PATIENT_IPPHIST',dataframe=df_ipp_patient)
+                df_filtered = df_ipp_patient[~df_ipp_patient['HOSPITAL_PATIENT_ID'].isin(list_ipp['HOSPITAL_PATIENT_ID'])]
+                connexion.insert_dataframe(table_name='DWH_PATIENT_IPPHIST',dataframe=df_filtered)
 
                 # transfert du fichier vers un folder "archive"
                 shutil.move(root_directory + '/' + filename , archive + '/' + filename)
